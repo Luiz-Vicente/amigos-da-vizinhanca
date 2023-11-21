@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Amigos Da Vizinhanca</string>
+    <string name="sign_up">Fazer cadastro</string>
+    <string name="i_already_have_an_account">Já possuo conta</string>
+    <string name="register">Cadastro</string>
+    <string name="cpf">CPF</string>
+    <string name="address">Endereço</string>
+    <string name="name">Nome</string>
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="sign_in">Fazer login</string>
+    <string name="login">Login</string>
+    <string name="upload_img">Nuvem cinza com seta branca ao centro simbolizando upload</string>
+    <string name="publish_event">Publicar acontecimento</string>
+    <string name="tell_what_happened">Conte o que aconteceu</string>
+    <string name="show_what_happened">Mostre o que aconteceu</string>
+    <string name="what_happened">O que aconteceu?</string>
+</resources>
