@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titleFeed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0C44AC"
@@ -87,7 +87,8 @@
                 android:text="@string/publish_event"
                 android:textSize="20sp"
                 app:cornerRadius="14dp"
-                tools:ignore="VisualLintButtonSize" />
+                tools:ignore="VisualLintButtonSize"
+                android:onClick="publishPost"/>
 
         </LinearLayout>
     </ScrollView>

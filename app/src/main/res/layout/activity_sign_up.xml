@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1E1E1E"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titleFeed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0C44AC"
@@ -48,12 +47,12 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#636262"
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="text"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:importantForAutofill="no"
                 tools:ignore="VisualLintTextFieldSize" />
 
             <TextView
@@ -73,12 +72,12 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#636262"
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="number"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:importantForAutofill="no"
                 tools:ignore="VisualLintTextFieldSize" />
 
             <TextView
@@ -98,12 +97,12 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#636262"
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="text"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:importantForAutofill="no"
                 tools:ignore="VisualLintTextFieldSize" />
 
             <TextView
@@ -123,12 +122,12 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#636262"
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="textWebEmailAddress"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:importantForAutofill="no"
                 tools:ignore="VisualLintTextFieldSize" />
 
             <TextView
@@ -162,6 +161,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#0C44AC"
+                android:contentDescription="@string/sign_up"
+                android:contextClickable="false"
+                android:onClick="signUpBottonClick"
                 android:padding="16dp"
                 android:text="@string/sign_up"
                 android:textSize="20sp"
@@ -169,10 +171,10 @@
                 tools:ignore="VisualLintButtonSize" />
 
             <TextView
-                android:id="@+id/signUpLoginLink"
+                android:id="@+id/signUpLoginLink3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="50dp"
                 android:text="@string/i_already_have_an_account"
                 android:textAlignment="center"
                 android:textSize="16sp" />
