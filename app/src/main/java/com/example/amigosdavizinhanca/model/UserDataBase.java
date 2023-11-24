@@ -34,9 +34,9 @@ public class UserDataBase extends SQLiteOpenHelper {
                 COL_ID + " integer primary key autoincrement, " +
                 COL_NAME + " text, " +
                 COL_CPF + " int, " +
-                COL_ADRESS + "text, " +
-                COL_EMAIL + "text, " +
-                COL_PASSWORD + "text)";
+                COL_ADRESS + " text, " +
+                COL_EMAIL + " text, " +
+                COL_PASSWORD + " text)";
         sqLiteDatabase.execSQL(query);
     }
 
@@ -45,7 +45,7 @@ public class UserDataBase extends SQLiteOpenHelper {
 
     }
 
-    public long createUserId (@NonNull User u){
+    public long postUserInDB (@NonNull User u){
         ContentValues values = new ContentValues();
         values.put(COL_NAME, u.getName());
         values.put(COL_CPF, u.getCpf());
@@ -58,20 +58,7 @@ public class UserDataBase extends SQLiteOpenHelper {
         return id;
     }
 
-    public long insertUserInDB(User u) {
-        ContentValues values = new ContentValues();
-        values.put(COL_ID, u.getId());
-        values.put(COL_NAME, u.getName());
-        values.put(COL_CPF, u.getCpf());
-        values.put(COL_ADRESS, u.getAddress());
-        values.put(COL_EMAIL, u.getEmail());
-        values.put(COL_PASSWORD, u.getPassword());
-        SQLiteDatabase database = getWritableDatabase();
-        long id = database.insert(DB_TABLE, null, values);
-        database.close();
-        return id;
-    }
-    public ArrayList<User> getUserFromDB(){
+    public ArrayList<User> getUsersFromDB(){
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.query(DB_TABLE, null, null, null,
                 null, null, null);
@@ -108,24 +95,37 @@ public class UserDataBase extends SQLiteOpenHelper {
         String id = String.valueOf(u.getId());
         SQLiteDatabase database = getWritableDatabase();
         int count = database.update(DB_TABLE,values,
-                COL_ID + "?", new String[]{id});
+                COL_ID + "=?", new String[]{id});
         database.close();
         return count;
     }
 
-    public int removeUserInDB(User u) {
+    public int deleteUserInDB(User u) {
         String id = String.valueOf(u.getId());
         SQLiteDatabase database = getWritableDatabase();
         int count = database.delete(DB_TABLE,
-                COL_ID + "?", new String[]{id});
+                COL_ID + "=?", new String[]{id});
         database.close();
         return count;
     }
 
+    public static boolean verifyLogin(String email, String password, Context context) {
+        UserDataBase userDataBase = new UserDataBase(context);
+        SQLiteDatabase database = userDataBase.getReadableDatabase();
 
+        Cursor cursor = database.query(
+                "User",
+                new String[]{"id"},
+                "email = ? AND password = ?",
+                new String[]{email, password},
+                null,
+                null,
+                null
+        );
+        boolean loginSuccessful = cursor.moveToFirst();
+        cursor.close();
+        database.close();
 
-
-    public UserDataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+        return loginSuccessful;
     }
 }

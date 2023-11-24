@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/titleFeed"
+        android:id="@+id/loginTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0C44AC"
@@ -102,25 +102,7 @@
             android:textAlignment="center"
             android:textColor="#A8E3DBDB"
             android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/signUpLoginLink2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@string/i_already_have_an_account"
-            android:textAlignment="center"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/signUpLoginLink"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@string/i_already_have_an_account"
-            android:textAlignment="center"
-            android:textSize="16sp" />
+            tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
     </LinearLayout>
 

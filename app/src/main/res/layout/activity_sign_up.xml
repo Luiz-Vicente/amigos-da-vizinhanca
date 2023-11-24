@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/titleFeed"
+        android:id="@+id/signUpTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0C44AC"
@@ -171,10 +171,10 @@
                 tools:ignore="VisualLintButtonSize" />
 
             <TextView
-                android:id="@+id/signUpLoginLink3"
+                android:id="@+id/signUpLoginLink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/i_already_have_an_account"
                 android:textAlignment="center"
                 android:textSize="16sp" />

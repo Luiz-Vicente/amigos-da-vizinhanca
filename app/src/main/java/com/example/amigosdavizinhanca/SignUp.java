@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.amigosdavizinhanca.model.UserDataBase;
+import com.example.amigosdavizinhanca.controller.User;
+
 public class SignUp extends AppCompatActivity {
 
     @Override
@@ -28,6 +31,10 @@ public class SignUp extends AppCompatActivity {
         String email = signUpEmailEditText.getText().toString();
         String password = signUpPasswordEditText.getText().toString();
 
+        UserDataBase userDataBase = new UserDataBase(this);
+        User newUser = new User(name, Integer.parseInt(cpf), address, email, password);
+        long userId = userDataBase.postUserInDB(newUser);
+        userDataBase.close();
 
         Intent intent = new Intent(SignUp.this, MainActivity.class);
         startActivity(intent);

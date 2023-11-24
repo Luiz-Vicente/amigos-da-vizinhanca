@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/titleFeed"
+        android:id="@+id/feedTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0C44AC"
