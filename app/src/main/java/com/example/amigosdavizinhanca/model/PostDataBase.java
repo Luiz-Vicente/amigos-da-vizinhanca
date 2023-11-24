@@ -18,18 +18,14 @@ public class PostDataBase extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private static final String DB_TABLE = "Post";
     private static final String COL_ID = "id";
-    private static final String COL_IDUSER = "idUser";
     private static final String COL_TEXT = "text";
-    private static final String COL_IMAGE = "image";
 
     public PostDataBase(Context context ) {super(context, DB_NAME, null, DB_VERSION); }
 
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query = "Create table if not exists " + DB_TABLE + " ( " +
                 COL_ID + " integer primary key autoincrement, " +
-                COL_IDUSER + " int, " +
-                COL_TEXT + " text, " +
-                COL_IMAGE + " text) ";
+                COL_TEXT + " text) ";
         sqLiteDatabase.execSQL(query);
     }
 
@@ -40,9 +36,7 @@ public class PostDataBase extends SQLiteOpenHelper {
 
     public long createPostInDB(@NonNull Post p){
         ContentValues values = new ContentValues();
-        values.put(COL_IDUSER, p.getIdUser());
         values.put(COL_TEXT, p.getText());
-        values.put(COL_IMAGE, p.getImage());
         SQLiteDatabase database = getWritableDatabase();
         long id = database.insert(DB_TABLE, null, values);
         database.close();
@@ -52,9 +46,7 @@ public class PostDataBase extends SQLiteOpenHelper {
     public long insertPostInDB (@NonNull Post p){
         ContentValues values = new ContentValues();
         values.put(COL_ID, p.getId());
-        values.put(COL_IDUSER, p.getIdUser());
         values.put(COL_TEXT, p.getText());
-        values.put(COL_IMAGE, p.getImage());
         SQLiteDatabase database = getWritableDatabase();
         long id = database.insert(DB_TABLE, null, values);
         database.close();
@@ -69,10 +61,8 @@ public class PostDataBase extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do {
                 long id = cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID));
-                long idUser = Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(COL_IDUSER)));
                 String text = cursor.getString(cursor.getColumnIndexOrThrow(COL_TEXT));
-                String image = cursor.getString(cursor.getColumnIndexOrThrow(COL_IMAGE));
-                posts.add(new Post(id, idUser, text, image));
+                posts.add(new Post(id, text));
             } while (cursor.moveToNext());
         }
     database.close();
@@ -81,9 +71,7 @@ public class PostDataBase extends SQLiteOpenHelper {
 
     public int updatePostsInDB(Post p){
         ContentValues values = new ContentValues();
-        values.put(COL_IDUSER, p.getIdUser());
         values.put(COL_TEXT, p.getText());
-        values.put(COL_IMAGE, p.getImage());
         String id = String.valueOf(p.getId());
         SQLiteDatabase database = getWritableDatabase();
         int count = database.update(DB_TABLE, values,

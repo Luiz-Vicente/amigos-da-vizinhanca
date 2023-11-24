@@ -75,4 +75,3 @@ public class DataModel {
         return false;
     }
 }
-

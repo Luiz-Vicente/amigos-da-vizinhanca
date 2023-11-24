@@ -34,11 +34,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView postText;
-        TextView imageButton;
         public ViewHolder(View itemView) {
             super(itemView);
             postText = itemView.findViewById(R.id.postText);
-            imageButton = itemView.findViewById(R.id.imageButton);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -76,7 +74,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post p =  DataModel.getInstance().getPost(position);
         holder.postText.setText(p.getText());
-        holder.imageButton.setText(p.getImage());
+
     }
 
     @Override
