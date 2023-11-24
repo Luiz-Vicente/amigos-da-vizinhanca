@@ -90,6 +90,7 @@
                 tools:ignore="VisualLintButtonSize"
                 android:onClick="publishPost"/>
 
+
         </LinearLayout>
     </ScrollView>
 
