@@ -15,4 +15,6 @@
     <string name="tell_what_happened">Conte o que aconteceu</string>
     <string name="show_what_happened">Mostre o que aconteceu</string>
     <string name="what_happened">O que aconteceu?</string>
+    <string name="loginSigUpLink">Não tem cadastro? Clique aqui!</string>
+    <string name="titleFeed">Feed da vizinhança</string>
 </resources>
