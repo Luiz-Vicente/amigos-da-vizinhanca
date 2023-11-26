@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rounded_shape"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/usernameView"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:text="TextView"
+            android:textColor="#0C44AC"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/dateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            android:textColor="#7AFFFFFF"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/descriptionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#FF0000"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="25sp"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/itemDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#0C44AC"
+        android:backgroundTint="#0C44AC"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/itemImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/image_post"
+        android:visibility="gone"
+        app:srcCompat="@drawable/upload" />
+
+</LinearLayout>

@@ -2,12 +2,10 @@ package com.example.amigosdavizinhanca.controller;
 
 public class User {
 
-    private long id;
-    private int cpf;
+    private long id, cpf;
     private String name, address, email, password;
 
-
-    public User(long id, String name, int cpf, String address, String email, String password) {
+    public User(long id, String name, long cpf, String address, String email, String password) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -16,7 +14,7 @@ public class User {
         this.password = password;
     }
 
-    public User( String name, int cpf, String address, String email, String password) {
+    public User(String name, long cpf, String address, String email, String password) {
         this.name = name;
         this.cpf = cpf;
         this.address = address;
@@ -40,11 +38,11 @@ public class User {
         this.name = name;
     }
 
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 

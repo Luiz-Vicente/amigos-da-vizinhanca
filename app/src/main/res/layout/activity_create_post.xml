@@ -72,7 +72,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="212dp"
                 android:layout_marginTop="20dp"
+                android:clickable="true"
                 android:contentDescription="@string/upload_img"
+                android:contextClickable="false"
+                android:onClick="imageButtonOnClick"
                 android:scaleX="1"
                 android:scaleY="1"
                 app:srcCompat="@drawable/upload" />

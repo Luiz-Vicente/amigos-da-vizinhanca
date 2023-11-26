@@ -163,7 +163,7 @@
                 android:backgroundTint="#0C44AC"
                 android:contentDescription="@string/sign_up"
                 android:contextClickable="false"
-                android:onClick="signUpBottonClick"
+                android:onClick="signUpButtonClick"
                 android:padding="16dp"
                 android:text="@string/sign_up"
                 android:textSize="20sp"
@@ -175,9 +175,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:onClick="redirectLoginOnClick"
                 android:text="@string/i_already_have_an_account"
                 android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
         </LinearLayout>
     </ScrollView>

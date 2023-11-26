@@ -1,11 +1,12 @@
 package com.example.amigosdavizinhanca;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,58 +14,86 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-
-import com.bumptech.glide.Glide;
 import com.example.amigosdavizinhanca.controller.Post;
-import com.example.amigosdavizinhanca.model.DataModel;
-
-import java.io.IOException;
+import com.example.amigosdavizinhanca.model.PostDataBase;
 
 public class CreatePost extends AppCompatActivity {
     EditText postEditText;
     int index;
+    private final int GALLERY_REQ_CODE = 2;
+    private Uri imageUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
+    }
 
-        postEditText = findViewById(R.id.postText);
+    public void onBackPressed() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setTitle(R.string.attention);
+        builder.setMessage(R.string.you_really_want_to_leave);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.no, null);
+        builder.create().show();
+    }
 
-        Bundle extra = getIntent().getExtras();
-        if (extra != null) {
-            index = extra.getInt("index");
-        }
-        if(index != -1){
-            Post p = DataModel.getInstance().getPost(index);
-            postEditText.setText(p.getText());
+    public void imageButtonOnClick(View v){
+        Intent iGallery = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        iGallery.setType("image/*");
+        startActivityForResult(iGallery, GALLERY_REQ_CODE);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK) {
+            if(requestCode == GALLERY_REQ_CODE){
+                ImageButton btn = findViewById(R.id.imageButton);
+                btn.setImageURI(data.getData());
+                this.imageUri = data.getData();
+            }
         }
     }
 
     public void publishPost(View V) {
+        EditText postEditText = findViewById(R.id.postText);
         String text = postEditText.getText().toString();
+        SharedPreferences settings = getSharedPreferences("PrefsFile", 0);
+
+        long creatorId = settings.getLong("userId", -1);
+        long currentTimestamp = System.currentTimeMillis();
+        String uri = (this.imageUri != null) ? String.valueOf(this.imageUri) : "";
 
         if(text.length() > 1) {
-            Post p = DataModel.getInstance().getPost(index);
-            p.setText(text);
+            Post newPost = new Post(text, creatorId, uri, currentTimestamp);
 
-            if(index!=-1) {
-                DataModel.getInstance().updatePost(p, index);
+            PostDataBase postDataBase = new PostDataBase(this);
+            long postId = postDataBase.createPostInDB(newPost);
+
+            if(postId != -1){
+                Intent resultIntent = new Intent();
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreatePost.this);
+                builder.setTitle(R.string.attention);
+                builder.setMessage(R.string.no_published);
+                builder.setPositiveButton(R.string.ok, null);
+                builder.create().show();
             }
-            finish();
-        }else{
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(CreatePost.this);
-            builder.setTitle("Atenção");
-            builder.setMessage("O post não foi salvo. Você realmente deseja sair?");
-            builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int i)
-                    {finish();
-                }
-            });
-            builder.setNegativeButton(android.R.string.no, null);
+            builder.setTitle(R.string.attention);
+            builder.setMessage(R.string.you_cant_create_a_publication_without_text);
+            builder.setPositiveButton(R.string.ok, null);
             builder.create().show();
         }
     }
-
 }
