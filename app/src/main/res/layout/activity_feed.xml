@@ -35,16 +35,18 @@
             android:background="#0C44AC"
             android:baselineAlignBottom="false"
             android:clickable="true"
+            android:contentDescription="@string/new_post_button"
+            android:onClick="newPost"
             android:src="@android:drawable/ic_input_add"
             app:backgroundTint="#0C44AC"
             app:rippleColor="#ffffff"
-            android:onClick="newPost"/>
+            tools:ignore="ImageContrastCheck,KeyboardInaccessibleWidget,RtlHardcoded" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/feedList"
             android:layout_width="match_parent"
-            android:layout_height="561dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="match_parent"
+            android:padding="20dp">
 
         </androidx.recyclerview.widget.RecyclerView>
 
